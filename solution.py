@@ -16,7 +16,7 @@ def translate(text: str) -> str:
     VOWEL_SUFFIX = 'yay'
     vowels = ['a', 'e', 'i', 'o', 'u']
 
-    def firstLetterIndex(word: str, from_end: bool = False) -> Optional[int]:
+    def first_letter_index(word: str, from_end: bool = False) -> Optional[int]:
         """
         Find the index of the first character that is a letter
 
@@ -36,40 +36,40 @@ def translate(text: str) -> str:
 
         return None
 
-    def firstLetter(word: str) -> Optional[str]:
-        index = firstLetterIndex(word)
+    def first_letter(word: str) -> Optional[str]:
+        index = first_letter_index(word)
         if index is None: return None
 
         return list(word)[index]
 
-    def containsAlpha(word: str) -> bool:
-        return firstLetterIndex(word) is not None
+    def contains_alpha(word: str) -> bool:
+        return first_letter_index(word) is not None
 
-    def isVowel(letter: str) -> bool:
+    def is_vowel(letter: str) -> bool:
         return letter.lower() in vowels
 
-    def isConsonant(letter: str) -> bool:
-        return letter.isalpha() and not isVowel(letter)
+    def is_consonant(letter: str) -> bool:
+        return letter.isalpha() and not is_vowel(letter)
 
-    def beginsWithVowel(word: str) -> bool:
-        letter = firstLetter(word)
+    def begins_with_vowel(word: str) -> bool:
+        letter = first_letter(word)
         if letter is None: return False
 
-        return isVowel(letter)
+        return is_vowel(letter)
 
-    def beginsWithConsonant(word: str) -> bool:
-        return containsAlpha(word) and not beginsWithVowel(word)
+    def begins_with_consonant(word: str) -> bool:
+        return contains_alpha(word) and not begins_with_vowel(word)
 
-    def beginsWithConsonantCluster(word: str) -> bool:
+    def begins_with_consonant_cluster(word: str) -> bool:
         letters = list(word)
-        index = firstLetterIndex(word)
+        index = first_letter_index(word)
 
-        return (isConsonant(letters[index])
-         and isConsonant(letters[index + 1])
+        return (is_consonant(letters[index])
+         and is_consonant(letters[index + 1])
          and letters[index + 1].lower() != 'y')
 
-    def moveFirstLetterToEnd(word: str) -> str:
-        first_index = firstLetterIndex(word)
+    def move_first_letter_to_end(word: str) -> str:
+        first_index = first_letter_index(word)
 
         # If there are no letters, simply return the word
         if first_index is None: return word
@@ -77,7 +77,7 @@ def translate(text: str) -> str:
         characters = list(word)
         first_letter = characters.pop(first_index)
 
-        last_index = firstLetterIndex(word="".join(characters), from_end=True)
+        last_index = first_letter_index(word="".join(characters), from_end=True)
 
         characters.insert(last_index, first_letter)
 
@@ -90,21 +90,21 @@ def translate(text: str) -> str:
 
     for word in words:
         translated_word = word
-        if beginsWithConsonant(word):
-            translated_word = moveFirstLetterToEnd(word)
+        if begins_with_consonant(word):
+            translated_word = move_first_letter_to_end(word)
 
-            if beginsWithConsonantCluster(word):
-                translated_word = moveFirstLetterToEnd(translated_word)
+            if begins_with_consonant_cluster(word):
+                translated_word = move_first_letter_to_end(translated_word)
 
             # Add the suffix to the end of the word
-            index = firstLetterIndex(word=word, from_end=True)
+            index = first_letter_index(word=word, from_end=True)
             characters = list(translated_word)
             characters.insert(index, CONSONANT_SUFFIX)
 
             translated_word = "".join(characters)
-        elif beginsWithVowel(word):
+        elif begins_with_vowel(word):
             # Add the suffix to the end of the word
-            index = firstLetterIndex(word=word, from_end=True)
+            index = first_letter_index(word=word, from_end=True)
             characters = list(word)
             characters.insert(index, VOWEL_SUFFIX)
 

@@ -1,7 +1,7 @@
 # English to Pig Latin Translator
 Translate English into Pig Latin!
 
-Read `pig_latin_rules.pdf` for a basic rundown of the rules that were followed in making this Pig Lating translator. The only rule that was not followed was the **Compound Word Rule** because it is far too complex for this simple project to implement.
+Read `pig_latin_rules.pdf` for a basic rundown of the rules that were followed in making this Pig Latin translator. The only rule that was not followed was the **Compound Word Rule** because it is far too complex for this simple project to implement.
 
 If you want to challenge yourself or use this as an exercise, do not look at `solution.py`! If you find any issues or have any suggestions for improvements to the solution or the tests, you may submit a pull request! If you're just here for the translation code, `solution.py` is what you want.
 ## Testing & Developing your own translator

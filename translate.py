@@ -23,7 +23,7 @@
 # ------------------------------------------------------------------------------
 # ******************************************************************************
 
-def translate(text: str):
+def translate(text: str) -> str:
     """
     Returns the given string translated to Pig Latin.
 
